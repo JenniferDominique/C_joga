@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <stdlib.h> // funcao abs() - usado para tornar o numero absoluto
+#include <time.h> // funcao time() usado no srand() para fazer sorteio
 
 void cabecalhoJogo();
 
