@@ -10,7 +10,7 @@ void main()
     ganhou = 0;
     tentativas = 0;
 
-    while(ganhou == 0){
+    while(1){ // while true - loop infinito
         printf("********************************* \n");
         printf("Tentativa %d \n", ++tentativas);
         printf("Qual eh o seu chute? ");
@@ -28,8 +28,7 @@ void main()
         if (acertou){
             printf("Voce acertou o numero secreto!!! :) \n");
             printf("Jogue de novo, voce eh um bom jogador. \n\n");
-            ganhou = 1; // Condição que faz sair do loop
-            //break; // Força a quebra do loop
+            break; // Força a quebra do loop
         }
         else{
             printf("Voce errou!!! :( \n");
