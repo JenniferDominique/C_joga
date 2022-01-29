@@ -48,7 +48,6 @@ gcc .\adivinha.c -o .\adivinha.out
 
 5. Agora se divirta tentando adivinhas o número secreto. :video_game:
 
-
 ## :book: Material de estudo
 - [Alura](https://cursos.alura.com.br) 
   - [C I: Introdução à Linguagem das Linguagens](https://cursos.alura.com.br/course/introducao-a-programacao-com-c-parte-1)
