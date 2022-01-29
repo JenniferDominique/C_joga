@@ -1,7 +1,8 @@
 # :game_die: Jogo de Adivinhação
 
-Esse jogo consiste em o usuário adivinhar o número sorteado pelo sistema, e o jogo contabiliza quantas tentativas foram feitas pelo usuário até acertar o número secreto. <br> 
-O jogo contém dicas se o número que você chutou é maior ou menor que o número a ser adivinhado.
+Esse jogo consiste em o usuário adivinhar o número sorteado pelo sistema, o jogo possui um sistema de nícel de dificuldade e contabiliza quantas tentativas foram feitas pelo usuário até acertar o número secreto. <br> 
+O jogo também contém dicas se o número que você chutou é maior ou menor que o número a ser adivinhado e muito mais.<br>
+E aí, aceita o desafio de acertar o número sorteado?!
 
 Para compilar e executar o programa siga os seguintes passos:
 
