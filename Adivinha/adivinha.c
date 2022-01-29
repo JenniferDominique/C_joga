@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void main()
 {
@@ -45,7 +46,9 @@ void main()
             printf("Mas nao desanime, tente de novo. \n\n");
         }
 
-        float pontosPerdidos = (float)(chute - numSecreto) / (float)2; //casting - convertendo tipo
+        float pontosPerdidos = abs(chute - numSecreto) / (float)2; //casting - convertendo tipo
+        // abs - eh o modulo do numero, converte ele para positivo
+        // utiliza o #include <stdlib.h>
         pontos = pontos - pontosPerdidos;
     }
 
