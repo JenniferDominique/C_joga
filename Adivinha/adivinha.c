@@ -2,7 +2,8 @@
 
 void main()
 {
-    int numSecreto=42, chute, ganhou, tentativas, pontos;
+    int numSecreto=42, chute, ganhou, tentativas;
+    float pontos;
 
     printf("\n********************************* \n");
     printf("*______Jogo de Adivinhacao______* \n");
@@ -44,12 +45,12 @@ void main()
             printf("Mas nao desanime, tente de novo. \n\n");
         }
 
-        int pontosPerdidos = (chute - numSecreto) / 2;
+        float pontosPerdidos = (chute - numSecreto) / 2.0;
         pontos = pontos - pontosPerdidos;
     }
 
     printf("********************************* \n");
     printf("Fim de jogo!!!\n");
     printf("Voce acertou em %d tentativas.\n", tentativas);
-    printf("Voce ganhou %d pontos.\n\n", pontos);
+    printf("Voce ganhou %.1f pontos.\n\n", pontos);
 }
