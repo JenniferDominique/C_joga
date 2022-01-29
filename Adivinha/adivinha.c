@@ -45,7 +45,7 @@ void main()
             printf("Mas nao desanime, tente de novo. \n\n");
         }
 
-        float pontosPerdidos = (chute - numSecreto) / (float)2; //casting - convertendo tipo
+        float pontosPerdidos = (float)(chute - numSecreto) / (float)2; //casting - convertendo tipo
         pontos = pontos - pontosPerdidos;
     }
 
