@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void main()
 {
-    int numSecreto=42, chute, ganhou, tentativas;
-    float pontos;
+    int numSecreto, chute, ganhou=0, tentativas=0;
+    float pontos=1000;
 
     printf("\n********************************* \n");
     printf("*______Jogo de Adivinhacao______* \n");
 
-    ganhou = 0;
-    tentativas = 0;
-    pontos = 1000;
+    // Sorteando um numero
+    srand(time(0)); // Utiliza o #include <time.h>
+    numSecreto= rand() % 100; // Numero entre 0 e 99
 
     while(1){ // while true - loop infinito
         printf("********************************* \n");
@@ -47,7 +48,7 @@ void main()
         }
 
         float pontosPerdidos = abs(chute - numSecreto) / (float)2; //casting - convertendo tipo
-        // abs - eh o modulo do numero, converte ele para positivo
+        // abs() - absoluto - eh o modulo do numero, converte ele para positivo
         // utiliza o #include <stdlib.h>
         pontos = pontos - pontosPerdidos;
     }
