@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+void cabecalhoJogo();
+
 void main()
 {
     int numSecreto, chute, ganhou=0, nivel, tentativa, maxTenta;
@@ -11,9 +13,7 @@ void main()
     srand(time(0)); // Utiliza o #include <time.h>
     numSecreto= rand() % 100; // Numero entre 0 e 99
 
-    printf("\n********************************* \n");
-    printf("*      Jogo de Adivinhacao      * \n");
-    printf("********************************* \n");
+    cabecalhoJogo();
 
     // Nivel de jogo
     printf("Qual nivel de dificuldade?\n");
@@ -28,8 +28,11 @@ void main()
         case 2:
             maxTenta = 15;
             break;
-        default:
+        case 3:
             maxTenta = 6;
+            break;
+        default:
+            maxTenta = 60;
             break;
     }
     
@@ -50,12 +53,12 @@ void main()
         int acertou = (chute == numSecreto); // Retorna 0 ou 1
 
         if (acertou){
-            printf("Voce acertou o numero secreto!!! :) \n");
+            printf("Voce acertou o numero secreto!!! >_< \n");
             printf("Jogue de novo, voce eh um bom jogador. \n");
             break; // Força a quebra do loop
         }
         else{
-            printf("Voce errou!!! :( \n");
+            printf("Voce errou!!! U_U \n");
 
             if (chute > numSecreto){
                 printf("Seu chute foi MAIOR que o num secreto! \n");
@@ -77,4 +80,19 @@ void main()
     printf("Fim de jogo!!!\n");
     printf("Voce acertou em %d tentativas.\n", tentativa);
     printf("Voce ganhou %.1f pontos.\n\n", pontos);
+}
+
+void cabecalhoJogo(){
+    printf("\n      _____________________________    \n");
+    printf("     /        _____________        \\  \n");
+    printf("     | == .  |             |     o |   \n");
+    printf("     |   _   |  Bem-vindo  |    B  |   \n");
+    printf("     |  / \\  |             | A   O |   \n");
+    printf("     | | O | |     ao      |  O    |   \n");
+    printf("     |  \\_/  |             |       |   \n");
+    printf("     |       |   Jogo de   | . . . |   \n");
+    printf("     |  :::  |   Adivinha  | . . . |   \n");
+    printf("     |  :::  |_____________| . . . |   \n");
+    printf("     |            JENNY            |   \n");
+    printf("     \\_____________________________/  \n\n");
 }
