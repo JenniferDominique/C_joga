@@ -15,35 +15,35 @@ git clone https://github.com/JenniferDominique/C_joga.git
 
 3. No terminal dentro da pasta do projeto `.\Adivinha`, compile o projeto com o seguinte comando:
 
-:window: Windowns:
+   :window: Windowns:
 ```
-gcc .\adivinha.c -o .\adivinha.exe
-```
-
-:penguin: Linux:
-```
-gcc -o adivinha adivinha.c
+  gcc .\adivinha.c -o .\adivinha.exe
 ```
 
-:apple: Mac:
+   :penguin: Linux:
 ```
-gcc .\adivinha.c -o .\adivinha.out
+  gcc -o adivinha adivinha.c
+```
+
+   :apple: Mac:
+```
+  gcc .\adivinha.c -o .\adivinha.out
 ```
 
 4. Depois de ter compilado o código, execute o programa com o seguinte código:
-:window: Windows:
+   :window: Windows:
 ```
-.\adivinha.exe
-```
-
-:penguin: Linux:
-```
-./adivinha
+  .\adivinha.exe
 ```
 
-:apple: Mac:
+   :penguin: Linux:
 ```
-.\adivinha.out
+  ./adivinha
+```
+
+   :apple: Mac:
+```
+  .\adivinha.out
 ```
 
 5. Agora se divirta tentando adivinhas o número secreto. :video_game:
