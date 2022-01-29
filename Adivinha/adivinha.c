@@ -2,13 +2,14 @@
 
 void main()
 {
-    int numSecreto=42, chute, ganhou, tentativas;
+    int numSecreto=42, chute, ganhou, tentativas, pontos;
 
     printf("\n********************************* \n");
     printf("*______Jogo de Adivinhacao______* \n");
 
     ganhou = 0;
     tentativas = 0;
+    pontos = 1000;
 
     while(1){ // while true - loop infinito
         printf("********************************* \n");
@@ -42,9 +43,13 @@ void main()
 
             printf("Mas nao desanime, tente de novo. \n\n");
         }
+
+        int pontosPerdidos = (chute - numSecreto) / 2;
+        pontos = pontos - pontosPerdidos;
     }
 
     printf("********************************* \n");
     printf("Fim de jogo!!!\n");
-    printf("Voce acertou em %d tentativas.\n\n", tentativas);
+    printf("Voce acertou em %d tentativas.\n", tentativas);
+    printf("Voce ganhou %d pontos.\n\n", pontos);
 }
