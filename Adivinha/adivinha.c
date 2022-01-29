@@ -1,34 +1,35 @@
 #include <stdio.h>
 
-#define NUM_TENTATIVAS 3
-
 void main()
 {
-    int numSecreto=42, chute;
+    int numSecreto=42, chute, ganhou, tentativas;
 
-    //Cabecalho do jogo
     printf("\n********************************* \n");
     printf("*______Jogo de Adivinhacao______* \n");
 
-    for (int i = 1; i <= NUM_TENTATIVAS; i++){
+    ganhou = 0;
+    tentativas = 0;
+
+    while(ganhou == 0){
         printf("********************************* \n");
-        printf("Tentativa %d de %d \n", i, NUM_TENTATIVAS);
+        printf("Tentativa %d \n", ++tentativas);
         printf("Qual eh o seu chute? ");
         scanf("%d", &chute);
         printf("Seu chute foi: %d \n\n", chute);
 
         if(chute < 0){
             printf("Voce nao pode chutar numeros negativos!\n");
-            i--; // Nao contabilizar no numero de tentativas
-            continue; // Para a execucao do bloco for e vai para a proxima iteracao do for
+            tentativas--; // Nao contabilizar no numero de tentativas
+            continue; // Para a execucao do bloco e vai para a proxima iteracao
         }
 
-        int acertou = chute == numSecreto; // Retorna 0 ou 1
+        int acertou = (chute == numSecreto); // Retorna 0 ou 1
 
         if (acertou){
             printf("Voce acertou o numero secreto!!! :) \n");
             printf("Jogue de novo, voce eh um bom jogador. \n\n");
-            break; // Quebra o loop do for
+            ganhou = 1; // Condição que faz sair do loop
+            //break; // Força a quebra do loop
         }
         else{
             printf("Voce errou!!! :( \n");
@@ -44,5 +45,7 @@ void main()
         }
     }
 
-    printf("Fim de jogo!!!\n\n");
+    printf("********************************* \n");
+    printf("Fim de jogo!!!\n");
+    printf("Voce acertou em %d tentativas.\n\n", tentativas);
 }
