@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
-// Assinaturas de funcao
-void cabecalho();
-void novoChute();
-int jaChutou(char letra);
-void imprimePalavraSecreta();
-void escolhePalavra();
-int acertou();
-int enforcou(); 
-
+#include "forca.h" // Assinaturas das funcoes
 
 // Variaveis globais
 char palavraSecreta[20];
