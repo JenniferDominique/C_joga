@@ -1,29 +1,29 @@
 #include <stdio.h>
 #include <string.h>
 
+// Variaveis globais
+char palavraSecreta[20];
+char chutes[26];
+int tentativas = 0;
+
 void cabecalho(){
     printf("***************************\n");
     printf("*    Jogo de Forca        *\n");
     printf("***************************\n");
 }
 
-void novoChute(char chutes[26], int* tentativ){
-    // int* tentativ -> aceita um ponteiro como parametro/ endereco de memoria
-
+void novoChute(){
     char chute;
     printf("Chute uma letra: ");
     scanf(" %c", &chute);
     //Dica: coloca um espaco antes do %c para ignorar o caractere de enter
 
     // Guardando as letras ja chutadas
-    chutes[(*tentativ)] = chute; 
-    // *tentativ -> pega o conteudo de onde esse ponteiro aponta
-    // Se fosse sem o * entao estaria se referindo ao endereco de memoria
-    (*tentativ)++;
-    // Acrescentando +1 no conteudo da variavel apontada
+    chutes[tentativas] = chute; 
+    tentativas++;
 }
 
-int jaChutou(char letra, char chutes[26], int tentativas){
+int jaChutou(char letra){
     int achou = 0;
 
     // Varrendo o array com todas as letras chutadas
@@ -37,13 +37,13 @@ int jaChutou(char letra, char chutes[26], int tentativas){
     return achou;
 }
 
-void imprimePalavraSecreta(char palavraSecreta[20], char chutes[26], int tentativas){
+void imprimePalavraSecreta(){
     int tamanhoPalavra = strlen(palavraSecreta); // strlen - utiliza #include <string.h>
 
     // Formando a palavra na tela
     for (int i = 0; i < tamanhoPalavra; i++){
 
-        int achou = jaChutou(palavraSecreta[i], chutes, tentativas);
+        int achou = jaChutou(palavraSecreta[i]);
 
         if (achou){
             printf("%c ", palavraSecreta[i]);
@@ -56,27 +56,22 @@ void imprimePalavraSecreta(char palavraSecreta[20], char chutes[26], int tentati
     printf("\n");
 }
 
-void escolhePalavra(char palavraSecreta[20]){
+void escolhePalavra(){
     sprintf(palavraSecreta, "MELANCIA"); //atribuindo a string ao array
 }
 
 void main(){
-    char palavraSecreta[20];
-
-    escolhePalavra(palavraSecreta); 
+    escolhePalavra(); 
 
     int acertou = 0;
     int enforcou = 0;
 
-    char chutes[26];
-    int tentativas = 0;
-
     cabecalho();
 
     do{
-        imprimePalavraSecreta(palavraSecreta, chutes, tentativas);
+        imprimePalavraSecreta();
 
-        novoChute(chutes, &tentativas);
+        novoChute();
         // &tentativas -> indica o endereco da variavel e passa como parametro
 
     } while (!acertou && !enforcou);
