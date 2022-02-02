@@ -60,6 +60,16 @@ void escolhePalavra(){
     sprintf(palavraSecreta, "MELANCIA"); //atribuindo a string ao array
 }
 
+int acertou(){
+    for(int i = 0; i < strlen(palavraSecreta); i++){
+        if(!jaChutou(palavraSecreta[i])){
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
 int enforcou(){
     int erros = 0;
 
@@ -88,16 +98,12 @@ int enforcou(){
 
 void main(){
     escolhePalavra(); 
-
-    int acertou = 0;
-
     cabecalho();
 
     do{
         imprimePalavraSecreta();
-
         novoChute();
         // &tentativas -> indica o endereco da variavel e passa como parametro
 
-    } while (!acertou && !enforcou());
+    } while (!acertou() && !enforcou());
 }
