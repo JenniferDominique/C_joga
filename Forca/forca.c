@@ -7,7 +7,7 @@ void cabecalho(){
     printf("***************************\n");
 }
 
-int novoChute(char chutes[26], int* tentativ){
+void novoChute(char chutes[26], int* tentativ){
     // int* tentativ -> aceita um ponteiro como parametro/ endereco de memoria
 
     char chute;
@@ -23,10 +23,47 @@ int novoChute(char chutes[26], int* tentativ){
     // Acrescentando +1 no conteudo da variavel apontada
 }
 
+int jaChutou(char letra, char chutes[26], int tentativas){
+    int achou = 0;
+
+    // Varrendo o array com todas as letras chutadas
+    for (int j = 0; j < tentativas; j++){
+        if (chutes[j] == letra){
+            achou = 1;
+            break;
+        }
+    }
+
+    return achou;
+}
+
+void imprimePalavraSecreta(char palavraSecreta[20], char chutes[26], int tentativas){
+    int tamanhoPalavra = strlen(palavraSecreta); // strlen - utiliza #include <string.h>
+
+    // Formando a palavra na tela
+    for (int i = 0; i < tamanhoPalavra; i++){
+
+        int achou = jaChutou(palavraSecreta[i], chutes, tentativas);
+
+        if (achou){
+            printf("%c ", palavraSecreta[i]);
+        }
+        else{
+            printf("_ ");
+        }
+    }
+
+    printf("\n");
+}
+
+void escolhePalavra(char palavraSecreta[20]){
+    sprintf(palavraSecreta, "MELANCIA"); //atribuindo a string ao array
+}
+
 void main(){
     char palavraSecreta[20];
 
-    sprintf(palavraSecreta, "MELANCIA"); //atribuindo a string ao array
+    escolhePalavra(palavraSecreta); 
 
     int acertou = 0;
     int enforcou = 0;
@@ -37,30 +74,7 @@ void main(){
     cabecalho();
 
     do{
-        int tamanhoPalavra = strlen(palavraSecreta); // strlen - utiliza #include <string.h>
-
-        // Formando a palavra na tela
-        for (int i = 0; i < tamanhoPalavra; i++){
-
-            int achou = 0;
-
-            // Varrendo o array com todas as letras chutadas
-            for (int j = 0; j < tentativas; j++){
-                if (chutes[j] == palavraSecreta[i]){
-                    achou = 1;
-                    break;
-                }
-            }
-
-            if (achou){
-                printf("%c ", palavraSecreta[i]);
-            }
-            else{
-                printf("_ ");
-            }
-        }
-
-        printf("\n");
+        imprimePalavraSecreta(palavraSecreta, chutes, tentativas);
 
         novoChute(chutes, &tentativas);
         // &tentativas -> indica o endereco da variavel e passa como parametro
