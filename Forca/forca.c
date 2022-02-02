@@ -4,7 +4,7 @@
 // Variaveis globais
 char palavraSecreta[20];
 char chutes[26];
-int tentativas = 0;
+int chutesDados = 0;
 
 void cabecalho(){
     printf("***************************\n");
@@ -19,15 +19,15 @@ void novoChute(){
     //Dica: coloca um espaco antes do %c para ignorar o caractere de enter
 
     // Guardando as letras ja chutadas
-    chutes[tentativas] = chute; 
-    tentativas++;
+    chutes[chutesDados] = chute; 
+    chutesDados++;
 }
 
 int jaChutou(char letra){
     int achou = 0;
 
     // Varrendo o array com todas as letras chutadas
-    for (int j = 0; j < tentativas; j++){
+    for (int j = 0; j < chutesDados; j++){
         if (chutes[j] == letra){
             achou = 1;
             break;
@@ -60,11 +60,36 @@ void escolhePalavra(){
     sprintf(palavraSecreta, "MELANCIA"); //atribuindo a string ao array
 }
 
+int enforcou(){
+    int erros = 0;
+
+    // Varrendo o array de chutes que o usuario deu
+    for(int i; i < chutesDados; i++){
+        int existe = 0;
+        
+        // Varrendo a palavra secreta
+        for(int j = 0; j < strlen(palavraSecreta); j++){
+            printf("Chute: %s Letra: %c\n", chutes[i],palavraSecreta[j]);
+            if(chutes[i] == palavraSecreta[j]){
+                existe = 1;
+                break;
+            }
+        }
+
+        if(!existe) {
+            erros++;
+        }
+        printf("Existe: %d\n", existe);
+    }
+        printf("Erros: %d\n", erros);
+    
+    return erros >= 6;
+}
+
 void main(){
     escolhePalavra(); 
 
     int acertou = 0;
-    int enforcou = 0;
 
     cabecalho();
 
@@ -74,5 +99,5 @@ void main(){
         novoChute();
         // &tentativas -> indica o endereco da variavel e passa como parametro
 
-    } while (!acertou && !enforcou);
+    } while (!acertou && !enforcou());
 }
