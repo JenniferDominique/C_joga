@@ -1,6 +1,28 @@
 #include <stdio.h>
 #include <string.h>
 
+void cabecalho(){
+    printf("***************************\n");
+    printf("*    Jogo de Forca        *\n");
+    printf("***************************\n");
+}
+
+int novoChute(char chutes[26], int* tentativ){
+    // int* tentativ -> aceita um ponteiro como parametro/ endereco de memoria
+
+    char chute;
+    printf("Chute uma letra: ");
+    scanf(" %c", &chute);
+    //Dica: coloca um espaco antes do %c para ignorar o caractere de enter
+
+    // Guardando as letras ja chutadas
+    chutes[(*tentativ)] = chute; 
+    // *tentativ -> pega o conteudo de onde esse ponteiro aponta
+    // Se fosse sem o * entao estaria se referindo ao endereco de memoria
+    (*tentativ)++;
+    // Acrescentando +1 no conteudo da variavel apontada
+}
+
 void main(){
     char palavraSecreta[20];
 
@@ -12,39 +34,36 @@ void main(){
     char chutes[26];
     int tentativas = 0;
 
+    cabecalho();
+
     do{
         int tamanhoPalavra = strlen(palavraSecreta); // strlen - utiliza #include <string.h>
 
         // Formando a palavra na tela
-        for(int i = 0; i < tamanhoPalavra; i++){
+        for (int i = 0; i < tamanhoPalavra; i++){
 
             int achou = 0;
 
             // Varrendo o array com todas as letras chutadas
-            for(int j = 0; j < tentativas; j++){
-                if(chutes[j] == palavraSecreta[i]){
+            for (int j = 0; j < tentativas; j++){
+                if (chutes[j] == palavraSecreta[i]){
                     achou = 1;
                     break;
                 }
             }
 
-            if(achou){
+            if (achou){
                 printf("%c ", palavraSecreta[i]);
-            } else{
+            }
+            else{
                 printf("_ ");
             }
         }
 
-        printf("\n\n");
-        
-        char chute;
-        printf("Chute uma letra: ");
-        scanf(" %c", &chute); 
-        //Dica: coloca um espaco antes do %c para ignorar o caractere de enter
+        printf("\n");
 
-        // Guardando as letras ja chutadas
-        chutes[tentativas] = chute;
-        tentativas++;
+        novoChute(chutes, &tentativas);
+        // &tentativas -> indica o endereco da variavel e passa como parametro
 
-    } while(!acertou && !enforcou);
+    } while (!acertou && !enforcou);
 }
