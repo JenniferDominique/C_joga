@@ -1,13 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "fogefoge.h"
 
 //VARIAVEIS GLOBAIS
 char** mapa; // ** -> ponteiro de ponteiro
 int linhas;
 int colunas;
 
-void main(){
-    
+void liberarMapa(){
+    //Liberando a memoria que foi alocada
+    for(int i = 0; i < linhas; i++){
+        free(mapa[i]);
+    }
+
+    free(mapa);
+}
+
+void alocaMapa(){
+    // Caso eu nao saiba o tamanho do mapa
+    // Alocacao de memoria
+    mapa = malloc(sizeof(char*) * linhas); // Linhas -> sao ponteiros de char
+    for(int i = 0; i < linhas; i++ ){
+        mapa[i] = malloc(sizeof(char) * (colunas + 1)); // alocando espaco para as colunas
+        // +1 por causa do \0 no final da string
+    }
+}
+
+void lerMapa(){
     // Abrindo o arquivo de mapa
     FILE* f;
     f = fopen("mapa.txt", "r");
@@ -18,32 +37,25 @@ void main(){
     }
 
     fscanf(f, "%d %d", &linhas, &colunas);
-    printf("Linhas: %d, Colunas: %d\n", linhas, colunas);
 
-    // Caso eu nao saiba o tamanho do mapa
-    // Alocacao de memoria
-    mapa = malloc(sizeof(char*) * linhas); // Linhas -> sao ponteiros de char
-    for(int i = 0; i < linhas; i++ ){
-        mapa[i] = malloc(sizeof(char) * (colunas + 1)); // alocando espaco para as colunas
-        // +1 por causa do \0 no final da string
-    }
+    alocaMapa();
 
-    // Imprimindo mapa
+    // Lendo e Imprimindo mapa
     for(int i = 0; i < 5; i++){
         fscanf(f, "%s", mapa[i]); // Pegando por linha
     }
+
+    fclose(f);
+}
+
+void main(){
     
+    lerMapa();
+    
+    //Imprimindo mapa
     for(int i = 0; i < 5; i++){
         printf("%s\n", mapa[i]);
     }
 
-    fclose(f);
-
-    //Liberando a memoria que foi alocada
-    for(int i = 0; i < linhas; i++){
-        free(mapa[i]);
-    }
-
-    free(mapa);
-
+    liberarMapa();
 }
