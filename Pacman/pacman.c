@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "fogefoge.h"
+#include "pacman.h"
 
 //VARIAVEIS GLOBAIS
 char** mapa; // ** -> ponteiro de ponteiro
@@ -48,14 +48,32 @@ void lerMapa(){
     fclose(f);
 }
 
-void main(){
-    
-    lerMapa();
-    
+void imprimeMapa(){
     //Imprimindo mapa
     for(int i = 0; i < 5; i++){
         printf("%s\n", mapa[i]);
     }
+}
+
+void acabou(){
+    return 0;
+}
+
+void main(){
+    
+    lerMapa();
+    
+    do{
+
+        imprimeMapa();
+
+        char comando;
+        scanf(" %c", &comando);
+
+        move(comando);
+
+    }while(!acabou());
+    
 
     liberarMapa();
 }
