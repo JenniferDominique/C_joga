@@ -3,4 +3,4 @@ void liberarMapa();
 void lerMapa();
 void alocaMapa();
 void imprimeMapa();
-void acabou();
+int acabou();

@@ -55,8 +55,41 @@ void imprimeMapa(){
     }
 }
 
-void acabou(){
+int acabou(){
     return 0;
+}
+
+void move(char direcao){
+    int x;
+    int y;
+
+    for(int i=0; i < linhas; i++){
+        for(int j=0; j < colunas; j++){
+            if(mapa[i][j] == '@'){ // Acamos a posicao do pac-man
+                x = i;
+                y = j;
+                break;
+            }
+        }
+    }
+
+    switch(direcao){
+        case 'a': // esquerda
+            mapa[x][y-1] = '@';
+            break;
+        case 'w': // cima
+            mapa[x-1][y] = '@';
+            break;
+        case 's': // baixo
+            mapa[x+1][y] = '@';
+            break;
+        case 'd': // direita
+            mapa[x][y+1] = '@';
+            break;
+    }
+
+    // Tirar o pacman da posicao atual e mover ele
+    mapa[x][y] = '.';
 }
 
 void main(){
@@ -68,9 +101,12 @@ void main(){
         imprimeMapa();
 
         char comando;
+        printf("Digite um comando: ");
         scanf(" %c", &comando);
 
         move(comando);
+
+        system("cls");
 
     }while(!acabou());
     
