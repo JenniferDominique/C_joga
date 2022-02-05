@@ -3,25 +3,23 @@
 #include "pacman.h"
 
 //VARIAVEIS GLOBAIS
-char** mapa; // ** -> ponteiro de ponteiro
-int linhas;
-int colunas;
+struct mapa m;
 
 void liberarMapa(){
     //Liberando a memoria que foi alocada
-    for(int i = 0; i < linhas; i++){
-        free(mapa[i]);
+    for(int i = 0; i < m.linhas; i++){
+        free(m.matriz[i]);
     }
 
-    free(mapa);
+    free(m.matriz);
 }
 
 void alocaMapa(){
     // Caso eu nao saiba o tamanho do mapa
     // Alocacao de memoria
-    mapa = malloc(sizeof(char*) * linhas); // Linhas -> sao ponteiros de char
-    for(int i = 0; i < linhas; i++ ){
-        mapa[i] = malloc(sizeof(char) * (colunas + 1)); // alocando espaco para as colunas
+    m.matriz = malloc(sizeof(char*) * m.linhas); // Linhas -> sao ponteiros de char
+    for(int i = 0; i < m.linhas; i++ ){
+        m.matriz[i] = malloc(sizeof(char) * (m.colunas + 1)); // alocando espaco para as colunas
         // +1 por causa do \0 no final da string
     }
 }
@@ -36,13 +34,13 @@ void lerMapa(){
         exit(1); // Fecha o programa
     }
 
-    fscanf(f, "%d %d", &linhas, &colunas);
+    fscanf(f, "%d %d", &(m.linhas), &(m.colunas));
 
     alocaMapa();
 
     // Lendo e Imprimindo mapa
     for(int i = 0; i < 5; i++){
-        fscanf(f, "%s", mapa[i]); // Pegando por linha
+        fscanf(f, "%s", m.matriz[i]); // Pegando por linha
     }
 
     fclose(f);
@@ -51,7 +49,7 @@ void lerMapa(){
 void imprimeMapa(){
     //Imprimindo mapa
     for(int i = 0; i < 5; i++){
-        printf("%s\n", mapa[i]);
+        printf("%s\n", m.matriz[i]);
     }
 }
 
@@ -63,9 +61,9 @@ void move(char direcao){
     int x;
     int y;
 
-    for(int i=0; i < linhas; i++){
-        for(int j=0; j < colunas; j++){
-            if(mapa[i][j] == '@'){ // Acamos a posicao do pac-man
+    for(int i=0; i < m.linhas; i++){
+        for(int j=0; j < m.colunas; j++){
+            if(m.matriz[i][j] == '@'){ // Acamos a posicao do pac-man
                 x = i;
                 y = j;
                 break;
@@ -75,21 +73,21 @@ void move(char direcao){
 
     switch(direcao){
         case 'a': // esquerda
-            mapa[x][y-1] = '@';
+            m.matriz[x][y-1] = '@';
             break;
         case 'w': // cima
-            mapa[x-1][y] = '@';
+            m.matriz[x-1][y] = '@';
             break;
         case 's': // baixo
-            mapa[x+1][y] = '@';
+            m.matriz[x+1][y] = '@';
             break;
         case 'd': // direita
-            mapa[x][y+1] = '@';
+            m.matriz[x][y+1] = '@';
             break;
     }
 
     // Tirar o pacman da posicao atual e mover ele
-    mapa[x][y] = '.';
+    m.matriz[x][y] = '.';
 }
 
 void main(){
