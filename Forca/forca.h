@@ -1,8 +1,12 @@
+#define TAMANHO_PALAVRA 20
+
 // Assinaturas das funcoes
 void cabecalho();
 void novoChute();
 int jaChutou(char letra);
-void imprimePalavraSecreta();
+void desenhaForca();
 void escolhePalavra();
 int acertou();
-int enforcou(); 
+int enforcou();
+void adicionarPalavra();
+int chutesErrados();
