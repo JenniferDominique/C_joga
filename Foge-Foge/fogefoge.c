@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 //VARIAVEIS GLOBAIS
-char mapa[5][10+1]; // Matriz = linha x coluna -> +1 por causa do \0 do final da string
+char** mapa; // ** -> ponteiro de ponteiro
 int linhas;
 int colunas;
 
@@ -20,6 +20,15 @@ void main(){
     fscanf(f, "%d %d", &linhas, &colunas);
     printf("Linhas: %d, Colunas: %d\n", linhas, colunas);
 
+    // Caso eu nao saiba o tamanho do mapa
+    // Alocacao de memoria
+    mapa = malloc(sizeof(char*) * linhas); // Linhas -> sao ponteiros de char
+    for(int i = 0; i < linhas; i++ ){
+        mapa[i] = malloc(sizeof(char) * (colunas + 1)); // alocando espaco para as colunas
+        // +1 por causa do \0 no final da string
+    }
+
+    // Imprimindo mapa
     for(int i = 0; i < 5; i++){
         fscanf(f, "%s", mapa[i]); // Pegando por linha
     }
@@ -29,5 +38,12 @@ void main(){
     }
 
     fclose(f);
+
+    //Liberando a memoria que foi alocada
+    for(int i = 0; i < linhas; i++){
+        free(mapa[i]);
+    }
+
+    free(mapa);
 
 }
