@@ -10,6 +10,11 @@ Para ver mais acesse o seguinte [link](https://github.com/JenniferDominique/C_jo
 Esse é o clássico jogo da forca, onde você vai chutando as letras até adivinhar toda a palavra secreta, porém a cada erro o bonequinho vai aparecendo na forca. <br>
 Para ver mais acesse o seguinte [link](https://github.com/JenniferDominique/C_joga/tree/main/Forca).
 
+## []:smiley: FOGE - FOGE](https://github.com/JenniferDominique/C_joga/tree/main/Foge-Foge)
+
+O Foge-foge é um jogo parecido com o Pac-man, onde o nosso heroi passeia pelo mapa e foge dos monstros, ou come monstros ou pega uma pílula especial ou assim por diante.
+Para ver mais acesse o seguinte [link](https://github.com/JenniferDominique/C_joga/tree/main/Foge-Foge).
+
 ## :books: Materiais estudados
 
 * [Alura](cursos.alura.com.b)
