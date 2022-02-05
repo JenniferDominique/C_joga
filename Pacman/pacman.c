@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include "pacman.h"
 
-//VARIAVEIS GLOBAIS
-struct mapa m;
+MAPA m;
 
 void liberarMapa(){
     //Liberando a memoria que foi alocada
