@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 #include "forca.h" // Assinaturas das funcoes
 
 // Variaveis globais
@@ -58,7 +60,32 @@ void imprimePalavraSecreta(){
 }
 
 void escolhePalavra(){
-    sprintf(palavraSecreta, "MELANCIA"); //atribuindo a string ao array
+    FILE* f; // Tipo de arquivo eh um ponteiro
+
+    f = fopen("palavras.txt", "r"); // abrir um arquivo
+    // Parametros: nome do arquivo e o tipo de acao -> r - read
+
+    // Tratamento de erro - caso ocorra um problema com o arquivo a ser lido
+    if(f == 0){
+        printf("Arquivo de dados indisponível!! :(\n\n");
+        exit(1); // Fecha o programa
+    }
+
+    int qntPalavras;
+    fscanf(f, "%d", &qntPalavras);
+    // A primeira linha do nosso arquivo tem um inteiro c/ a qnt de palavras
+
+    // Escolhendo uma palavra aleatorio
+    srand(time(0));
+    int randomico = rand() % qntPalavras; 
+    // Um número aleatório entre zero e a qnt de palavras q tenho no arquivo
+
+    // Lendo o arquivo ate pegar a palavra sorteada
+    for(int i = 0; i <= randomico; i++){
+        fscanf(f, "%s", palavraSecreta);
+    }
+
+    fclose(f); //fechando o aquivo
 }
 
 int acertou(){
@@ -91,7 +118,7 @@ int enforcou(){
             erros++;
         }
     }
-    
+
     return erros >= 6;
 }
 
