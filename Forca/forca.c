@@ -75,12 +75,12 @@ int enforcou(){
     int erros = 0;
 
     // Varrendo o array de chutes que o usuario deu
-    for(int i; i < chutesDados; i++){
+    for(int i = 0; i < chutesDados; i++){
         int existe = 0;
         
         // Varrendo a palavra secreta
         for(int j = 0; j < strlen(palavraSecreta); j++){
-            printf("Chute: %s Letra: %c\n", chutes[i],palavraSecreta[j]);
+            
             if(chutes[i] == palavraSecreta[j]){
                 existe = 1;
                 break;
@@ -90,9 +90,7 @@ int enforcou(){
         if(!existe) {
             erros++;
         }
-        printf("Existe: %d\n", existe);
     }
-        printf("Erros: %d\n", erros);
     
     return erros >= 6;
 }
