@@ -4,39 +4,31 @@
 #include "mapa.h"
 
 MAPA m;
+POSICAO pacman;
 
 void move(char direcao){
-    int x;
-    int y;
 
-    // Acha a posicao onde está o pacman no mapa
-    for(int i=0; i < m.linhas; i++){
-        for(int j=0; j < m.colunas; j++){
-            if(m.matriz[i][j] == '@'){ // Acamos a posicao do pac-man
-                x = i;
-                y = j;
-                break;
-            }
-        }
-    }
+    // Tirar o pacman da posicao atual e mover ele
+    m.matriz[pacman.x][pacman.y] = '.';
 
     switch(direcao){
         case 'a': // esquerda
-            m.matriz[x][y-1] = '@';
+            m.matriz[pacman.x][pacman.y-1] = '@';
+            pacman.y--;
             break;
         case 'w': // cima
-            m.matriz[x-1][y] = '@';
+            m.matriz[pacman.x-1][pacman.y] = '@';
+            pacman.x--;
             break;
         case 's': // baixo
-            m.matriz[x+1][y] = '@';
+            m.matriz[pacman.x+1][pacman.y] = '@';
+            pacman.x++;
             break;
         case 'd': // direita
-            m.matriz[x][y+1] = '@';
+            m.matriz[pacman.x][pacman.y+1] = '@';
+            pacman.y++;
             break;
     }
-
-    // Tirar o pacman da posicao atual e mover ele
-    m.matriz[x][y] = '.';
 }
 
 int acabou(){
@@ -46,6 +38,8 @@ int acabou(){
 void main(){
     
     lerMapa(&m);
+
+    encontraNoMapa(&m, &pacman, '@');
     
     do{
 

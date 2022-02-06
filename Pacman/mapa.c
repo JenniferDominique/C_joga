@@ -2,6 +2,19 @@
 #include <stdlib.h>
 #include "mapa.h"
 
+void encontraNoMapa(MAPA* m, POSICAO* p, char personagem){
+     // Acha a posicao onde está o pacman no mapa
+    for(int i=0; i < m->linhas; i++){
+        for(int j=0; j < m->colunas; j++){
+            if(m->matriz[i][j] == personagem){ // Acamos a posicao do pac-man
+                p->x = i;
+                p->y = j;
+                break;
+            }
+        }
+    }
+}
+
 void liberarMapa(MAPA* m){
     //Liberando a memoria que foi alocada
     for(int i = 0; i < m->linhas; i++){
