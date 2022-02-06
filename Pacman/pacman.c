@@ -13,27 +13,51 @@ void move(char direcao){
             return; // Finaliza essa funcao move()
     }
 
-    // Tirar o pacman da posicao atual e mover ele
-    m.matriz[pacman.x][pacman.y] = '.';
+    // Proxima casa para onde o pac ira
+    int proximoX = pacman.x;
+    int proximoY = pacman.y;
 
     switch(direcao){
         case 'a': // esquerda
-            m.matriz[pacman.x][pacman.y-1] = '@';
-            pacman.y--;
+            proximoY--;
             break;
         case 'w': // cima
-            m.matriz[pacman.x-1][pacman.y] = '@';
-            pacman.x--;
+            proximoX--;
             break;
         case 's': // baixo
-            m.matriz[pacman.x+1][pacman.y] = '@';
-            pacman.x++;
+            proximoX++;
             break;
         case 'd': // direita
-            m.matriz[pacman.x][pacman.y+1] = '@';
-            pacman.y++;
+            proximoY++;
             break;
     }
+
+    // Se o pacman ja estiver na ultima casa
+    //da linha/colunas possivel 
+    // Ele nao se mexe
+    if(proximoX >= m.linhas)
+        return;
+    if(proximoY >= m.colunas)
+        return;
+
+    // O pacman so pode ir para a proxima casa
+    // se ela for uma casa que seja representada por '.'
+    //logo se for diferente ele nao move
+    if(m.matriz[proximoX][proximoY] != '.')
+        return;
+
+    // Se a prixima posicao nao for barrada pela
+    // verificacoes descritas acima entao ele pode andar
+    
+    // Colocando o pacman na proxima casa
+    m.matriz[proximoX][proximoY] = '@'; 
+    // Substituindo o lugar onde o pacman estava antes
+    m.matriz[pacman.x][pacman.y] = '.';
+
+    // Atualizando a posicao atual do pacman no mapa
+    pacman.x = proximoX;
+    pacman.y = proximoY;
+    
 }
 
 int acabou(){
