@@ -7,8 +7,8 @@ MAPA m;
 POSICAO pacman;
 
 int ehDirecao(char direcao){
-    return direcao == 'a' || direcao == 's' ||
-        direcao == 'd' || direcao == 'w';
+    return direcao == ESQUERDA || direcao == BAIXO ||
+        direcao == DIREITA || direcao == CIMA;
 }
 
 void move(char direcao){
@@ -22,16 +22,16 @@ void move(char direcao){
     int proximoY = pacman.y;
 
     switch(direcao){
-        case 'a': // esquerda
+        case ESQUERDA: // esquerda
             proximoY--;
             break;
-        case 'w': // cima
+        case CIMA: // cima
             proximoX--;
             break;
-        case 's': // baixo
+        case BAIXO: // baixo
             proximoX++;
             break;
-        case 'd': // direita
+        case DIREITA: // direita
             proximoY++;
             break;
     }
@@ -64,7 +64,7 @@ void main(){
     
     lerMapa(&m);
 
-    encontraNoMapa(&m, &pacman, '@');
+    encontraNoMapa(&m, &pacman, PACMAN);
     
     do{
 

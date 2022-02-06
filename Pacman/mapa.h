@@ -1,3 +1,9 @@
+// Constantes
+#define PACMAN '@'
+#define CAMINHO '.'
+#define PAREDE_VERTICAL '|'
+#define PAREDE_HORIZONTAL '-'
+
 // Conjunto de variaveis
 struct mapa{
     char** matriz; // ** -> ponteiro de ponteiro

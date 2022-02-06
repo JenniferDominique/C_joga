@@ -8,14 +8,14 @@ void andaNoMapa(MAPA* m, int origemX, int origemY, int destinoX, int destinoY){
     // Colocando o pacman na proxima direcao
     m->matriz[destinoX][destinoY] = personagem;
     // Substituindo onde o pacman estava por um '.'
-    m->matriz[origemX][origemY] = '.';
+    m->matriz[origemX][origemY] = CAMINHO;
 }
 
 int ehCaminho(MAPA* m, int x, int y){
     // O pacman so pode ir para a proxima casa
     // se ela for uma casa que seja representada por '.'
     //logo se for diferente ele nao move
-    return m->matriz[x][y] == '.';
+    return m->matriz[x][y] == CAMINHO;
 }
 
 // Se o pacman ja estiver na ultima casada linha/colunas possivel 
