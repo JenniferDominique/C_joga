@@ -2,6 +2,15 @@
 #include <stdlib.h>
 #include "mapa.h"
 
+void andaNoMapa(MAPA* m, int origemX, int origemY, int destinoX, int destinoY){
+    //Qual eh o caractere que identifica o pacman
+    char personagem = m->matriz[origemX][origemY];
+    // Colocando o pacman na proxima direcao
+    m->matriz[destinoX][destinoY] = personagem;
+    // Substituindo onde o pacman estava por um '.'
+    m->matriz[origemX][origemY] = '.';
+}
+
 int ehCaminho(MAPA* m, int x, int y){
     // O pacman so pode ir para a proxima casa
     // se ela for uma casa que seja representada por '.'

@@ -49,15 +49,11 @@ void move(char direcao){
     // Se a prixima posicao nao for barrada pela
     // verificacoes descritas acima entao ele pode andar
     
-    // Colocando o pacman na proxima casa
-    m.matriz[proximoX][proximoY] = '@'; 
-    // Substituindo o lugar onde o pacman estava antes
-    m.matriz[pacman.x][pacman.y] = '.';
-
+    andaNoMapa(&m, pacman.x, pacman.y, proximoX, proximoY);
+    
     // Atualizando a posicao atual do pacman no mapa
     pacman.x = proximoX;
     pacman.y = proximoY;
-    
 }
 
 int acabou(){
