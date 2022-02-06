@@ -20,3 +20,5 @@ void lerMapa(MAPA* m);
 void alocaMapa(MAPA* m);
 void imprimeMapa(MAPA* m);
 void encontraNoMapa(MAPA* m, POSICAO* p, char personagem);
+int ehValida(MAPA* m, int x, int y);
+int ehCaminho(MAPA* m, int x, int y);

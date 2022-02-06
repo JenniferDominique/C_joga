@@ -6,11 +6,15 @@
 MAPA m;
 POSICAO pacman;
 
+int ehDirecao(char direcao){
+    return direcao == 'a' || direcao == 's' ||
+        direcao == 'd' || direcao == 'w';
+}
+
 void move(char direcao){
     // Usuario digitou valor invalido
-    if(direcao != 'a' && direcao != 's' &&
-        direcao != 'd' && direcao != 'w'){
-            return; // Finaliza essa funcao move()
+    if(!ehDirecao(direcao)){
+        return; // Finaliza essa funcao move()
     }
 
     // Proxima casa para onde o pac ira
@@ -32,19 +36,15 @@ void move(char direcao){
             break;
     }
 
-    // Se o pacman ja estiver na ultima casa
-    //da linha/colunas possivel 
-    // Ele nao se mexe
-    if(proximoX >= m.linhas)
-        return;
-    if(proximoY >= m.colunas)
+    // Se a proxima posicao nao for valida
+    // Ou seja, se for parede/obstaculo
+    if(!ehValida(&m, proximoX, proximoY))
         return;
 
-    // O pacman so pode ir para a proxima casa
-    // se ela for uma casa que seja representada por '.'
-    //logo se for diferente ele nao move
-    if(m.matriz[proximoX][proximoY] != '.')
+    // Se nao for caminho, ele nao mexe
+    if(!ehCaminho(&m, proximoX, proximoY))
         return;
+
 
     // Se a prixima posicao nao for barrada pela
     // verificacoes descritas acima entao ele pode andar

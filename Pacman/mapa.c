@@ -2,6 +2,24 @@
 #include <stdlib.h>
 #include "mapa.h"
 
+int ehCaminho(MAPA* m, int x, int y){
+    // O pacman so pode ir para a proxima casa
+    // se ela for uma casa que seja representada por '.'
+    //logo se for diferente ele nao move
+    return m->matriz[x][y] == '.';
+}
+
+// Se o pacman ja estiver na ultima casada linha/colunas possivel 
+int ehValida(MAPA* m, int x, int y){
+    // Ele nao se mexe
+    if(x >= m->linhas)
+        return 0;
+    if(y >= m->colunas)
+        return 0;
+
+    return 1;
+}
+
 void encontraNoMapa(MAPA* m, POSICAO* p, char personagem){
      // Acha a posicao onde está o pacman no mapa
     for(int i=0; i < m->linhas; i++){
