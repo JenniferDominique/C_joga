@@ -1,10 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "pacman.h"
 #include "mapa.h"
 
 MAPA m;
 POSICAO pacman;
+
+int paraOndeFastasmaVai(int xAtual, int yAtual, 
+    int* xDestino, int* yDestino){
+    
+    int opcoesPossicoes[4][2]={
+        {xAtual, yAtual+1},
+        {xAtual+1, yAtual},
+        {xAtual, yAtual-1},
+        {xAtual-1, yAtual}
+    };
+
+    //Sorteando uma posicao para o fantasma andar
+    srand(time(0));
+    // Posso sortear ate 10 vezes uma posicao para 1 fantasma
+    for(int i=0; i<10; i++){
+        int linhaOpcao = rand() % 4;
+
+        if(ehValida(&m, opcoesPossicoes[linhaOpcao][0], opcoesPossicoes[linhaOpcao][1])
+            && ehCaminho(&m, opcoesPossicoes[linhaOpcao][0], opcoesPossicoes[linhaOpcao][1])){
+
+            *xDestino = opcoesPossicoes[linhaOpcao][0];
+            *yDestino = opcoesPossicoes[linhaOpcao][1];
+
+            return 1;
+        }
+    }
+
+    return 0;
+}
 
 void fantasmas(){
     MAPA copia;
@@ -16,9 +46,14 @@ void fantasmas(){
         for(int j=0; j < m.colunas; j++){
 
             if(copia.matriz[i][j] == FANTASMA){
-                // Se a proxima posicao for valida
-                if(ehValida(&m, i, j+1) && ehCaminho(&m, i, j+1)){
-                    andaNoMapa(&m, i, j, i, j+1);
+
+                int xDestino;
+                int yDestino;
+
+                int novaPosicao = paraOndeFastasmaVai(i, j, &xDestino, &yDestino);
+
+                if(novaPosicao){
+                    andaNoMapa(&m, i, j, xDestino, yDestino);
                 }
             }
         }
