@@ -7,6 +7,11 @@ MAPA m;
 POSICAO pacman;
 
 void move(char direcao){
+    // Usuario digitou valor invalido
+    if(direcao != 'a' && direcao != 's' &&
+        direcao != 'd' && direcao != 'w'){
+            return; // Finaliza essa funcao move()
+    }
 
     // Tirar o pacman da posicao atual e mover ele
     m.matriz[pacman.x][pacman.y] = '.';
