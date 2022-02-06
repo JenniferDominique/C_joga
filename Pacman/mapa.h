@@ -1,5 +1,6 @@
 // Constantes
-#define PACMAN '@'
+#define PACMAN 'C'
+#define FANTASMA '#'
 #define CAMINHO '.'
 #define PAREDE_VERTICAL '|'
 #define PAREDE_HORIZONTAL '-'
@@ -10,14 +11,12 @@ struct mapa{
     int linhas;
     int colunas;
 };
-
 typedef struct mapa MAPA;
 
 struct posicao{
     int x;
     int y;
 };
-
 typedef struct posicao POSICAO;
 
 // Assinatura de funcoes
@@ -29,3 +28,4 @@ void encontraNoMapa(MAPA* m, POSICAO* p, char personagem);
 int ehValida(MAPA* m, int x, int y);
 int ehCaminho(MAPA* m, int x, int y);
 void andaNoMapa(MAPA* m, int origemX, int origemY, int destinoX, int destinoY);
+void copiaMapa(MAPA* destino, MAPA* origem);

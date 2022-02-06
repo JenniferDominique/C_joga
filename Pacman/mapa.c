@@ -1,6 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "mapa.h"
+
+void copiaMapa(MAPA* destino, MAPA* origem){
+    // Quantidade de linhas e colunas
+    destino->linhas = origem->linhas;
+    destino->colunas = origem->colunas;
+
+    alocaMapa(destino);
+
+    // Copiando de um mapa para o outro
+    for(int i=0; i < origem->linhas; i++){
+        strcpy(destino->matriz[i], origem->matriz[i]);
+        // strcpy - copia uma string de um para o outro
+        //ele para de copiar quando ele encontra o \n do final da string
+    }
+}
 
 void andaNoMapa(MAPA* m, int origemX, int origemY, int destinoX, int destinoY){
     //Qual eh o caractere que identifica o pacman
@@ -51,6 +67,7 @@ void liberarMapa(MAPA* m){
     free(m->matriz);
 }
 
+// Define o tamanho de memoria que eu preciso para o mapa
 void alocaMapa(MAPA* m){
     // Caso eu nao saiba o tamanho do mapa
     // Alocacao de memoria
