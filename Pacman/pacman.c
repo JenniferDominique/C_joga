@@ -6,6 +6,21 @@
 
 MAPA m;
 POSICAO pacman;
+int temPilula = 0;
+
+void explodePilula(){
+    // A pilula explode 3 casa para a direita
+    for(int i=0; i<=3; i++){
+        if(ehValida(&m, pacman.x, pacman.y+i)){
+
+            if(ehParede(&m, pacman.x, pacman.y+i)){
+                break;
+            }
+
+            m.matriz[pacman.x][pacman.y] = CAMINHO;
+        }
+    }
+}
 
 int paraOndeFastasmaVai(int xAtual, int yAtual, int* xDestino, int* yDestino){
     
@@ -96,10 +111,14 @@ void move(char direcao){
     if(!podeAndar(&m, PACMAN, proximoX, proximoY))
         return;
 
+    // Se a proxima posicao for uma pilula
+    // Entao o pac come ela e adiciona na lista de poderes
+    if(ehPersonagem(&m, PILULA, proximoX, proximoY)){
+        temPilula = 1;
+    }
 
     // Se a prixima posicao nao for barrada pela
     // verificacoes descritas acima entao ele pode andar
-    
     andaNoMapa(&m, pacman.x, pacman.y, proximoX, proximoY);
     
     // Atualizando a posicao atual do pacman no mapa
@@ -120,6 +139,7 @@ void main(){
     encontraNoMapa(&m, &pacman, PACMAN);
     
     do{
+        printf("Tem pilula(s): %s\n", (temPilula ? "SIM" : "NAO"));
 
         imprimeMapa(&m);
 
@@ -132,6 +152,10 @@ void main(){
         fantasmas();
 
         system("cls"); // Limpando o prompt de comando
+
+        if(comando == BOMBA){
+            explodePilula();
+        }
 
     }while(!acabou());
     

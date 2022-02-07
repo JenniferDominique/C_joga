@@ -4,6 +4,7 @@
 #define CAMINHO '.'
 #define PAREDE_VERTICAL '|'
 #define PAREDE_HORIZONTAL '-'
+#define PILULA '*'
 
 // Conjunto de variaveis
 struct mapa{
