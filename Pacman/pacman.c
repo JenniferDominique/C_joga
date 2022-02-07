@@ -9,11 +9,15 @@ POSICAO pacman;
 int temPilula = 0;
 
 void explodePilula(){
+    if(!temPilula) return; //Se eu nao tenho pilula eu nao faco nada
+
     // A pilula explode 3 casas
     explodePilula2(pacman.x, pacman.y, 0, 1, 3);  // Explode para a direita
     explodePilula2(pacman.x, pacman.y, 0, -1, 3); // esquerda
     explodePilula2(pacman.x, pacman.y, 1, 0, 3);  // para baixo
     explodePilula2(pacman.x, pacman.y, -1, 0, 3);  // para cima
+
+    temPilula = 0; // Depois que eu usei a pilula
 }
 
 void explodePilula2(int x, int y, int somaX, int somaY, int qnt){
