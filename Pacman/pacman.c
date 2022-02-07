@@ -8,18 +8,12 @@ MAPA m;
 POSICAO pacman;
 int temPilula = 0;
 
-void explodePilula(){
-    // A pilula explode 3 casa para a direita
-    for(int i=0; i<=3; i++){
-        if(ehValida(&m, pacman.x, pacman.y+i)){
+void explodePilula(int x, int y, int qnt){
+    if(qnt == 0) return; // Condicao para parar a funcao recursiva
 
-            if(ehParede(&m, pacman.x, pacman.y+i)){
-                break;
-            }
+    m.matriz[x][y+1] = CAMINHO;
 
-            m.matriz[pacman.x][pacman.y] = CAMINHO;
-        }
-    }
+    explodePilula(x, y+1, qnt-1); //Funcao recursiva -> ela chama ela mesma
 }
 
 int paraOndeFastasmaVai(int xAtual, int yAtual, int* xDestino, int* yDestino){
@@ -133,12 +127,13 @@ int acabou(){
 }
 
 void main(){
-    
     lerMapa(&m);
 
     encontraNoMapa(&m, &pacman, PACMAN);
     
     do{
+        system("clear||cls"); // Limpando o prompt de comando
+    
         printf("Tem pilula(s): %s\n", (temPilula ? "SIM" : "NAO"));
 
         imprimeMapa(&m);
@@ -149,13 +144,12 @@ void main(){
 
         move(comando);
 
-        fantasmas();
-
-        system("cls"); // Limpando o prompt de comando
-
         if(comando == BOMBA){
-            explodePilula();
+            // A pilula explode 3 casa para a direita
+            explodePilula(pacman.x, pacman.y, 3);
         }
+
+        fantasmas();
 
     }while(!acabou());
     
