@@ -9,9 +9,13 @@ POSICAO pacman;
 int temPilula = 0;
 
 void explodePilula(int x, int y, int qnt){
-    if(qnt == 0) return; // Condicao para parar a funcao recursiva
+    // Condicoes para parar de invocar a funcao recursiva
+    if(qnt == 0) return; //Se ela ja executou o max de vezes possivel
+    if(!ehValida(&m, x, y+1)) return;//Se a prox. direita nao for valida
+    if(ehParede(&m, x, y+1)) return;// Se a prox. posicao for parede
+    // A parede bloqueia a exploxao das proximas casas
 
-    m.matriz[x][y+1] = CAMINHO;
+    m.matriz[x][y+1] = CAMINHO;// Limpa o caminho, mata os fantasmas
 
     explodePilula(x, y+1, qnt-1); //Funcao recursiva -> ela chama ela mesma
 }
