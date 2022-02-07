@@ -7,8 +7,7 @@
 MAPA m;
 POSICAO pacman;
 
-int paraOndeFastasmaVai(int xAtual, int yAtual, 
-    int* xDestino, int* yDestino){
+int paraOndeFastasmaVai(int xAtual, int yAtual, int* xDestino, int* yDestino){
     
     int opcoesPossicoes[4][2]={
         {xAtual, yAtual+1},
@@ -23,8 +22,7 @@ int paraOndeFastasmaVai(int xAtual, int yAtual,
     for(int i=0; i<10; i++){
         int linhaOpcao = rand() % 4;
 
-        if(ehValida(&m, opcoesPossicoes[linhaOpcao][0], opcoesPossicoes[linhaOpcao][1])
-            && ehCaminho(&m, opcoesPossicoes[linhaOpcao][0], opcoesPossicoes[linhaOpcao][1])){
+        if(podeAndar(&m, FANTASMA, opcoesPossicoes[linhaOpcao][0], opcoesPossicoes[linhaOpcao][1])){
 
             *xDestino = opcoesPossicoes[linhaOpcao][0];
             *yDestino = opcoesPossicoes[linhaOpcao][1];
@@ -94,11 +92,8 @@ void move(char direcao){
 
     // Se a proxima posicao nao for valida
     // Ou seja, se for parede/obstaculo
-    if(!ehValida(&m, proximoX, proximoY))
-        return;
-
-    // Se nao for caminho, ele nao mexe
-    if(!ehCaminho(&m, proximoX, proximoY))
+    // E se nao for caminho, ele nao mexe
+    if(!podeAndar(&m, PACMAN, proximoX, proximoY))
         return;
 
 
@@ -113,7 +108,9 @@ void move(char direcao){
 }
 
 int acabou(){
-    return 0;
+    POSICAO pos;
+    int pacmanNoMapa = encontraNoMapa(&m, &pos, PACMAN);
+    return !pacmanNoMapa;
 }
 
 void main(){
