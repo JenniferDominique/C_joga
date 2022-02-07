@@ -8,16 +8,28 @@ MAPA m;
 POSICAO pacman;
 int temPilula = 0;
 
-void explodePilula(int x, int y, int qnt){
+void explodePilula(){
+    // A pilula explode 3 casas
+    explodePilula2(pacman.x, pacman.y, 0, 1, 3);  // Explode para a direita
+    explodePilula2(pacman.x, pacman.y, 0, -1, 3); // esquerda
+    explodePilula2(pacman.x, pacman.y, 1, 0, 3);  // para baixo
+    explodePilula2(pacman.x, pacman.y, -1, 0, 3);  // para cima
+}
+
+void explodePilula2(int x, int y, int somaX, int somaY, int qnt){
     // Condicoes para parar de invocar a funcao recursiva
     if(qnt == 0) return; //Se ela ja executou o max de vezes possivel
-    if(!ehValida(&m, x, y+1)) return;//Se a prox. direita nao for valida
-    if(ehParede(&m, x, y+1)) return;// Se a prox. posicao for parede
+    
+    int novoX = x + somaX;
+    int novoY = y + somaY;
+
+    if(!ehValida(&m, novoX, novoY)) return;//Se a prox. direita nao for valida
+    if(ehParede(&m, novoX, novoY)) return;// Se a prox. posicao for parede
     // A parede bloqueia a exploxao das proximas casas
 
-    m.matriz[x][y+1] = CAMINHO;// Limpa o caminho, mata os fantasmas
+    m.matriz[novoX][novoY] = CAMINHO;// Limpa o caminho, mata os fantasmas
 
-    explodePilula(x, y+1, qnt-1); //Funcao recursiva -> ela chama ela mesma
+    explodePilula2(novoX, novoY, somaX, somaY, qnt-1); //Funcao recursiva -> ela chama ela mesma
 }
 
 int paraOndeFastasmaVai(int xAtual, int yAtual, int* xDestino, int* yDestino){
@@ -149,8 +161,7 @@ void main(){
         move(comando);
 
         if(comando == BOMBA){
-            // A pilula explode 3 casa para a direita
-            explodePilula(pacman.x, pacman.y, 3);
+            explodePilula();
         }
 
         fantasmas();
