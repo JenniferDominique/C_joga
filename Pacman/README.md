@@ -18,33 +18,33 @@ git clone https://github.com/JenniferDominique/C_joga.git
 
    :window: Windowns:
 ```
-  gcc .\forca.c -o .\forca.exe
+  gcc .\pacman.c .\mapa.c .\ui.c -o .\pacman.exe
 ```
 
    :penguin: Linux:
 ```
-  gcc -o forca forca.c
+  gcc -o pacman pacman.c mapa.c ui.c
 ```
 
    :apple: Mac:
 ```
-  gcc .\forca.c -o .\forca.out
+  gcc .\pacman.c .\mapa.c .\ui.c -o .\pacman.out
 ```
 
 #### 4. Depois de ter compilado o código, execute o programa com o seguinte código:
    :window: Windows:
 ```
-  .\forca.exe
+  .\pacman.exe
 ```
 
    :penguin: Linux:
 ```
-  ./forca
+  ./pacman
 ```
 
    :apple: Mac:
 ```
-  .\forca.out
+  .\pacman.out
 ```
 
 #### 5. Agora se divirta tentando adivinhas a palavra secreta. :video_game:
