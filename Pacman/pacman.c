@@ -3,6 +3,7 @@
 #include <time.h>
 #include "pacman.h"
 #include "mapa.h"
+#include "ui.h"
 
 MAPA m;
 POSICAO pacman;
@@ -153,10 +154,11 @@ void main(){
     
     do{
         system("clear||cls"); // Limpando o prompt de comando
-    
-        printf("Tem pilula(s): %s\n", (temPilula ? "SIM" : "NAO"));
 
         imprimeMapa(&m);
+
+        printf("(a)direita (d)esquerda (s)baixo (w)cima    (b)Bomba 4 direcoes\n");
+        printf("Tem pilula(s): %s\n", (temPilula ? "SIM" : "NAO"));
 
         char comando;
         printf("Digite um comando: ");

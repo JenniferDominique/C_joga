@@ -117,9 +117,3 @@ void lerMapa(MAPA* m){
     fclose(f);
 }
 
-void imprimeMapa(MAPA* m){
-    //Imprimindo mapa
-    for(int i = 0; i < 5; i++){
-        printf("%s\n", m->matriz[i]);
-    }
-}

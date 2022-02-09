@@ -1,3 +1,6 @@
+#ifndef _PACMAN_H_
+#define _PACMAN_H_
+
 // Constantes
 #define CIMA 'w'
 #define BAIXO 's'
@@ -15,3 +18,5 @@ int paraOndeFastasmaVai(int xAtual, int yAtual,
 
 void explodePilula();
 void explodePilula2(int x, int y, int somaX, int somaY, int qnt);
+
+#endif
